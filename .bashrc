@@ -36,6 +36,11 @@ export PATH=$PATH:$HOME/opt/adt-bundle-linux-x86_64/sdk/platform-tools
 export NDK=$PATH:$HOME/opt/android-ndk-r9d
 export PATH=$PATH:$NDK
 
+# "Herodotus was the father of history, you know"
+export HISTSIZE=50000
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignorespace:ignoredups
+
 # Custom functions
 showGPGRecipients() {
   gpg --status-fd 1 --list-only $1
@@ -51,3 +56,5 @@ alias grabit='tmux attach-session -d'
 alias jserve='bundle exec jekyll serve'
 alias makepassword='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
 alias showrecipients=showGPGRecipients
+alias clipboard='xclip -sel clip'
+alias clearhistory='history -c && history -w'
