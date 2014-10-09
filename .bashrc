@@ -7,34 +7,7 @@ source ~/.environment
 
 # Various path additions
 PATH=$PATH:$HOME/bin
-PATH=$PATH:$HOME/opt/nimrod_0.9.4_linux_amd64/bin
-PATH=$PATH:$HOME/opt/nimrod_0.9.4_linux_amd64/compiler/c2nim
-PATH=$PATH:$HOME/repos/openocd/src
-PATH=$PATH:$HOME/repos/bitnotify/node_modules/bower/bin
 export PATH
-
-# Go
-export GOPATH=$HOME/scripts/golang
-export GOROOT=$HOME/opt/go
-export PATH=$PATH:$GOPATH/bin
-
-# NodeJs
-export NODE_PATH=$NODE_PATH:/home/eric/.local/share/npm/lib/node_modules
-PATH=$PATH:$HOME/opt/node-v0.10.30-linux-x64/bin
-PATH=$PATH:$HOME/.local/share/npm/bin
-export PATH
-
-# Java
-JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-export JAVA_HOME
-PATH=$JAVA_HOME/bin:$PATH
-export PATH
-
-# Android
-export PATH=$PATH:$HOME/opt/adt-bundle-linux-x86_64/sdk/tools
-export PATH=$PATH:$HOME/opt/adt-bundle-linux-x86_64/sdk/platform-tools
-export NDK=$PATH:$HOME/opt/android-ndk-r9d
-export PATH=$PATH:$NDK
 
 # "Herodotus was the father of history, you know"
 export HISTSIZE=50000
