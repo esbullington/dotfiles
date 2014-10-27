@@ -19,12 +19,20 @@ showGPGRecipients() {
   gpg --status-fd 1 --list-only $1
 }
 
+# Fetches files for a given commit
+function gitfiles() { 
+  /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
+}
+
 # Aliases
 alias sb='source ~/.bashrc'
 alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/eric/storage/opt/.bitcoin --datadir=/home/eric/oldhome/eric/.armory > /home/eric/logs/armory.log &'
 alias eb='vim ~/.bashrc'
+alias ee='vim ~/.environment'
 alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
+alias gl='git status'
+alias gp='git push'
 alias grabit='tmux attach-session -d'
 alias jserve='bundle exec jekyll serve'
 alias makepassword='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
