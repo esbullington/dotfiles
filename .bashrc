@@ -1,4 +1,3 @@
-
 # the most important thing!
 set -o vi
 
@@ -24,6 +23,11 @@ function gitfiles() {
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
 }
 
+# Attaches existing tmux sessions by id
+function attachit() {
+  tmux attach-session -d -t "$@";
+}
+
 # Aliases
 alias sb='source ~/.bashrc'
 alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/eric/storage/opt/.bitcoin --datadir=/home/eric/oldhome/eric/.armory > /home/eric/logs/armory.log &'
@@ -39,3 +43,6 @@ alias makepassword='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n
 alias showrecipients=showGPGRecipients
 alias clipboard='xclip -sel clip'
 alias clearhistory='history -c && history -w'
+
+# OPAM configuration
+. /home/eric/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
