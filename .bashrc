@@ -39,3 +39,4 @@ alias makepassword='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n
 alias showrecipients=showGPGRecipients
 alias clipboard='xclip -sel clip'
 alias clearhistory='history -c && history -w'
+alias mitscheme='rlwrap -r -c -f "$HOME"/opt/mit-scheme/mit_scheme_bindings.txt scheme'
