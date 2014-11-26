@@ -6,10 +6,19 @@
 filetype on
 filetype plugin on
 
+
 hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=white ctermbg=red
 
+set clipboard^=unnamed
+
 syntax on
+
+" Ocaml stuff
+set rtp+=/home/eric/opt/repos/ocp-indent-vim
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+autocmd FileType ocaml setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " for Rust
 au BufRead,BufNewFile *.rs setfiletype rust
@@ -32,8 +41,8 @@ au BufRead,BufNewFile *.go set filetype=go
 autocmd FileType go setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 " Set python line settings
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 " Set python line settings
 autocmd BufRead *.md set filetype=markdown

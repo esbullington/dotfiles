@@ -1,4 +1,3 @@
-
 # the most important thing!
 set -o vi
 
@@ -22,6 +21,11 @@ showGPGRecipients() {
 # Fetches files for a given commit
 function gitfiles() { 
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
+}
+
+# Attaches existing tmux sessions by id
+function attachit() {
+  tmux attach-session -d -t "$@";
 }
 
 # Aliases
