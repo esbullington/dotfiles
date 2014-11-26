@@ -15,6 +15,10 @@ syntax on
 au BufRead,BufNewFile *.rs setfiletype rust
 autocmd FileType rust setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
+" for fsharp
+au BufRead,BufNewFile *.fs setfiletype fs
+autocmd FileType fs setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
 " for ejs
 au BufRead,BufNewFile *.ejs setfiletype html
 
@@ -30,6 +34,10 @@ autocmd FileType go setlocal smartindent expandtab shiftwidth=4 softtabstop=4 ta
 " Set python line settings
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+" Set python line settings
+autocmd BufRead *.md set filetype=markdown
+autocmd FileType markdown setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 "Trim trailing white space on save for Python files
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e
