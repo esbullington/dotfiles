@@ -55,6 +55,7 @@ autocmd BufWritePre *.py normal m`:%s/\s\+$//e
 autocmd BufRead *.html set smartindent filetype=html
 autocmd FileType html setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType css setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType less setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " for SCSS
