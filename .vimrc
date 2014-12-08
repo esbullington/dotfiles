@@ -57,6 +57,14 @@ autocmd FileType html setlocal smartindent expandtab shiftwidth=2 softtabstop=2 
 autocmd FileType css setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
+" for SCSS
+au BufRead,BufNewFile *.scss setfiletype scss
+autocmd FileType scss setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" for Typescript
+au BufRead,BufNewFile *.ts setfiletype typescript
+autocmd FileType typescript setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
 call pathogen#infect()
 
 " Brief help
@@ -82,6 +90,7 @@ Bundle 'tlib'
 Bundle 'surround.vim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'nimrod.vim'
+Bundle 'groenewege/vim-less'
 
 call tcomment#DefineType("nimrod", '# %s')
 
