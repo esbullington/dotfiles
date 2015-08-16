@@ -3,26 +3,46 @@
 " curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+function! Incr()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+  if a > 0
+    execute 'normal! '.c.'|'.a."\<C-a>"
+  endif
+  normal `<
+endfunction
+vnoremap <C-a> :call Incr()<CR>
+
 filetype on
 filetype plugin on
 
-
-hi clear SpellBad
-hi SpellBad cterm=underline,bold ctermfg=white ctermbg=red
+" hi clear SpellBad
+" hi SpellBad cterm=underline,bold ctermfg=white ctermbg=red
 
 set clipboard^=unnamed
 
 syntax on
 
 " Ocaml stuff
-set rtp+=/home/eric/opt/repos/ocp-indent-vim
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" set rtp+=/home/eric/opt/repos/ocp-indent-vim
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType ocaml setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+" for Rust
+au BufRead,BufNewFile *.rs setfiletype rust
+autocmd FileType rust setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " for Rust
 au BufRead,BufNewFile *.rs setfiletype rust
 autocmd FileType rust setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" for Nginx
+au BufRead,BufNewFile *.conf setfiletype nginx
+autocmd FileType nginx setlocal smartindent expandtab shiftwidth=8 softtabstop=8 tabstop=8
+
+" for Python
+au BufRead,BufNewFile *.py setfiletype python
+autocmd FileType python setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 " for fsharp
 au BufRead,BufNewFile *.fs setfiletype fs
