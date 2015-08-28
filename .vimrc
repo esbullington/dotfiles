@@ -6,11 +6,14 @@
 filetype on
 filetype plugin on
 
-
 hi clear SpellBad
 hi SpellBad cterm=underline,bold ctermfg=white ctermbg=red
 
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 set clipboard^=unnamed
+set ruler
 
 syntax on
 
@@ -20,13 +23,37 @@ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType ocaml setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
+" for Racket
+au BufRead,BufNewFile *.rkt setfiletype scheme
+autocmd FileType scheme setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
 " for Rust
 au BufRead,BufNewFile *.rs setfiletype rust
 autocmd FileType rust setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
+" for SVG
+au BufRead,BufNewFile *.svg setfiletype html
+" autocmd FileType svg setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+" for XML (Android)
+au BufRead,BufNewFile *.xml setfiletype xml
+autocmd FileType xml setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
 " for fsharp
-au BufRead,BufNewFile *.fs setfiletype fs
+au BufRead,BufNewFile *.fs setfiletype fsharp
 autocmd FileType fs setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+" for yaml
+au BufRead,BufNewFile *.yaml setfiletype yaml
+autocmd FileType yaml setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" for java
+au BufRead,BufNewFile *.java setfiletype java
+autocmd FileType java setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+
+" for jade
+au BufRead,BufNewFile *.jade setfiletype jade
+autocmd FileType jade setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " for ejs
 au BufRead,BufNewFile *.ejs setfiletype html
@@ -44,9 +71,13 @@ autocmd FileType go setlocal smartindent expandtab shiftwidth=4 softtabstop=4 ta
 autocmd BufRead *.py set cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setlocal smartindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
-" Set python line settings
+" Set markdown line settings
 autocmd BufRead *.md set filetype=markdown
 autocmd FileType markdown setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" Set scheme line settings
+autocmd BufRead *.scm set filetype=scheme lisp showmatch
+" autocmd FileType scheme setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 "Trim trailing white space on save for Python files
 autocmd BufWritePre *.py normal m`:%s/\s\+$//e
@@ -57,6 +88,7 @@ autocmd FileType html setlocal smartindent expandtab shiftwidth=2 softtabstop=2 
 autocmd FileType css setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType less setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd BufRead *.tmpl set filetype=html
 
 " for SCSS
 au BufRead,BufNewFile *.scss setfiletype scss
@@ -65,6 +97,46 @@ autocmd FileType scss setlocal smartindent expandtab shiftwidth=2 softtabstop=2 
 " for Typescript
 au BufRead,BufNewFile *.ts setfiletype typescript
 autocmd FileType typescript setlocal smartindent expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" Find/replace
+" Escape special characters in a string for exact matching.
+" This is useful to copying strings from the file to the search tool
+" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
+function! EscapeString (string)
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
+endfunction
+
+" Get the current visual block for search and replaces
+" This function passed the visual block through a string escape function
+" Based on this - http://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
+function! GetVisual() range
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+
+  return escaped_selection
+endfunction
+
+" Start the find and replace command across the entire file
+vmap  <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
 
 call pathogen#infect()
 
@@ -92,6 +164,7 @@ Bundle 'surround.vim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'nimrod.vim'
 Bundle 'groenewege/vim-less'
+Bundle 'rust-lang/rust.vim'
 
 call tcomment#DefineType("nimrod", '# %s')
 
