@@ -8,7 +8,7 @@ set bell-style none
 source ~/.environment
 
 # Ensure a display is set
-export DISPLAY=:0.0
+# export DISPLAY=:0.0
 
 # AWS CLI command completion
 complete -C aws_completer aws
@@ -50,20 +50,12 @@ function composer() {
   php $HOME/.composer/composer.phar "$@";
 }
 
-# Aliases
-alias sb='source ~/.bashrc'
-alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/eric/storage/opt/.bitcoin --datadir=/home/eric/oldhome/eric/.armory > /home/eric/logs/armory.log &'
-alias eb='vim ~/.bashrc'
-alias ee='vim ~/.environment'
-alias ev='vim ~/.vimrc'
-alias et='vim ~/.tmux.conf'
-alias gl='git status'
-alias gp='git push'
-alias grabit='tmux attach-session -d'
-alias jserve='bundle exec jekyll serve'
-alias makepassword='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1'
-alias makehash='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 16 | head -n 1'
-alias showrecipients=showGPGRecipients
-alias clipboard='xclip -sel clip'
-alias clearhistory='history -c && history -w'
-alias mitscheme='rlwrap -r -c -f "$HOME"/opt/mit-scheme/mit_scheme_bindings.txt scheme'
+# Fingerprints of ssh public keys
+function fingerprints() {
+  local file="$1"
+  while read l; do
+    [[ -n $l && ${l###} = $l ]] && ssh-keygen -l -f /dev/stdin <<<$l
+  done < $file
+}
+
+source $HOME/.bash_aliases
