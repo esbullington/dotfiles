@@ -1,6 +1,5 @@
 " INSTALLATION:
 " mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-" curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 " git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 filetype on
@@ -51,17 +50,18 @@ filetype plugin off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " required
+
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tComment'
 Plugin 'tlib'
 Plugin 'autoclose'
 Plugin 'surround.vim'
+Plugin 'lfilho/cosco.vim'
 Plugin 'repeat.vim'
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'nimrod.vim'
-Plugin 'groenewege/vim-less'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
-Plugin 'lfilho/cosco.vim'
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 filetype plugin indent on
