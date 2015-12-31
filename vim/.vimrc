@@ -12,6 +12,9 @@ let mapleader = ","
 " Allow us to use bash aliases in command line
 let $BASH_ENV = "~/.bash_aliases"
 
+" Insert single char after space in normal mode
+:nnoremap <Space> i_<Esc>r
+
 " Use backup copy so vim doesn't write multiple intermediate files
 " thus setting of file monitors like inotify
 set backupcopy=yes
@@ -51,6 +54,7 @@ filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " required
 
+Plugin 'groenewege/vim-less'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tComment'
 Plugin 'tlib'
