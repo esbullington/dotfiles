@@ -27,6 +27,10 @@ showGPGRecipients() {
   gpg --status-fd 1 --list-only $1
 }
 
+function ssha() {
+	ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
+}
+
 # Fetches files for a given commit
 function gitfiles() { 
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";

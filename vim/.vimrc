@@ -6,6 +6,7 @@ filetype on
 filetype plugin on
 syntax on
 
+
 " Define map leader as comma
 let mapleader = "," 
 
@@ -65,6 +66,8 @@ Plugin 'repeat.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'hashivim/vim-terraform'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
