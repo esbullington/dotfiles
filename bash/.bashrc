@@ -90,5 +90,8 @@ mgif() {
 mjpeg() {
     mv "$1"{.,}
 }
+p4json() {
+    python /home/eric/repos/p4lang/p4c-bm/p4c_bm/__main__.py "$@"
+}
 
 source $HOME/.bash_aliases

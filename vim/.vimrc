@@ -6,7 +6,6 @@ filetype on
 filetype plugin on
 syntax on
 
-
 " Define map leader as comma
 let mapleader = "," 
 
@@ -36,6 +35,17 @@ set tabstop=2
 " size of an "indent"
 set shiftwidth=2
 
+" Snippets
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
 " VUNDLE
 " Brief help
 " :BundleList          - list configured bundles
@@ -55,20 +65,24 @@ filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " required
 
-Plugin 'groenewege/vim-less'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tComment'
 Plugin 'tlib'
 Plugin 'autoclose'
 Plugin 'surround.vim'
-Plugin 'lfilho/cosco.vim'
 Plugin 'repeat.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'hashivim/vim-terraform'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'tpope/vim-abolish'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on
