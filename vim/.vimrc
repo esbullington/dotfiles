@@ -6,18 +6,31 @@ filetype on
 filetype plugin on
 syntax on
 
+" Digraphs
+digraphs no 172
+digraphs xr 8853
+digraphs tr 8868
+digraphs fa 8869
+
 " Define map leader as comma
 let mapleader = "," 
 
 " Allow us to use bash aliases in command line
 let $BASH_ENV = "~/.bash_aliases"
 
-" Insert single char after space in normal mode
-:nnoremap <Space> i_<Esc>r
+" allow backspace
+set backspace=indent,eol,start
 
-" Use backup copy so vim doesn't write multiple intermediate files
-" thus setting of file monitors like inotify
-set backupcopy=yes
+" Insert single char after space in normal mode
+nnoremap <Space> i_<Esc>r
+
+" Use different backup copy dir 
+" so vim doesn't write multiple intermediate files to working dir
+set backup 
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+set backupskip=/tmp/*,/private/tmp/* 
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
+set writebackup
 
 " Make centered file header
 nnoremap <C-b> :center 40<cr>hhv0r*A<space><esc>20A*<esc>d40<bar>YppVr*kk.
@@ -45,6 +58,8 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Pathogen
+execute pathogen#infect()
 
 " VUNDLE
 " Brief help
@@ -58,6 +73,7 @@ let g:UltiSnipsEditSplit="vertical"
 "
 " required! 
 " My Bundles here:
+"
 
 filetype off                   " required!
 filetype plugin off
@@ -65,22 +81,21 @@ filetype plugin off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " required
 
+Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tComment'
 Plugin 'tlib'
 Plugin 'autoclose'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'rust-lang/rust.vim'
-Plugin 'fatih/vim-go'
-Plugin 'chase/vim-ansible-yaml'
 Plugin 'hashivim/vim-terraform'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tpope/vim-abolish'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'frigoeu/psc-ide-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

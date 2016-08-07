@@ -31,6 +31,10 @@ function ssha() {
 	ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
 }
 
+function clingit() {
+  rlwrap $HOME/opt/cling/bin/cling "$@"
+}
+
 # Fetches files for a given commit
 function gitfiles() { 
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
@@ -77,6 +81,9 @@ jpeg() {
 # Just for easy access in history
 mpng() {
     mv "$1"{.,}
+}
+grabtmux() {
+	tmux attach-session -d -t "$1"
 }
 mgif() {
     newsize=$(wc -c <"$1.")
