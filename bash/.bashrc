@@ -102,3 +102,7 @@ p4json() {
 }
 
 source $HOME/.bash_aliases
+
+# Attach to tmux if session exists
+# otherwise start new sessions
+[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
