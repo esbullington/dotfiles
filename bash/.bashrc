@@ -1,11 +1,40 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # the most important thing!
 set -o vi
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash/.bash_aliases ]; then
+    . ~/.bash/.bash_aliases
+fi
+
+if [ -f ~/.bash/.bash_functions ]; then
+    . ~/.bash/.bash_functions
+fi
+
+# API keys and other sensitive environmental variables
+if [ -f ~/.bash/.environment ]; then
+    . ~/.bash/.environment
+fi
 
 # No annoying bells
 set bell-style none
 
-# API keys and other sensitive environmental variables
-source ~/.environment
+# Attach to tmux if session exists
+# otherwise start new sessions
+[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
 
 # Ensure a display is set
 export DISPLAY=:0.0
@@ -22,87 +51,82 @@ export HISTSIZE=50000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignorespace:ignoredups
 
-# Custom functions
-showGPGRecipients() {
-  gpg --status-fd 1 --list-only $1
-}
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-function ssha() {
-	ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
-}
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-function clingit() {
-  rlwrap $HOME/opt/cling/bin/cling "$@"
-}
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
-# Fetches files for a given commit
-function gitfiles() { 
-  /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
-}
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-function smbcmd() {
- smbclient //tomato/shared_files -A $HOME/.smb -c "$@"
-}
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
 
-# Attaches existing tmux sessions by id
-function attachit() {
-  tmux attach-session -d -t "$@";
-}
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
 
-function wpwww() {
-  sudo -u www-data /usr/bin/php /home/eric/bin/wp "$@";
-}
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
 
-# Composer
-function composer() {
-  php $HOME/.composer/composer.phar "$@";
-}
-
-# Fingerprints of ssh public keys
-function fingerprints() {
-  local file="$1"
-  while read l; do
-    [[ -n $l && ${l###} = $l ]] && ssh-keygen -l -f /dev/stdin <<<$l
-  done < $file
-}
-
-# Image optimization tools
-# Via Rob W at:
-# http://stackoverflow.com/a/19327447
-png() {
-    pngcrush -brute "$1"{,.} && du -b "$1"{,.}
-}
-gif() {
-    gifsicle -O "$1" -o "$1." && du -b "$1"{,.}
-}
-jpeg() {
-    jpegtran "$1" > "$1." && du -b "$1"{,.}
-}
-# Just for easy access in history
-mpng() {
-    mv "$1"{.,}
-}
-grabtmux() {
-	tmux attach-session -d -t "$1"
-}
-mgif() {
-    newsize=$(wc -c <"$1.")
-    oldsize=$(wc -c <"$1")
-    if [ $oldsize -gt $newsize ] ; then
-        mv "$1"{.,}
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-        rm "$1."
-    fi  
-}
-mjpeg() {
-    mv "$1"{.,}
-}
-p4json() {
-    python /home/eric/repos/p4lang/p4c-bm/p4c_bm/__main__.py "$@"
-}
+	color_prompt=
+    fi
+fi
 
-source $HOME/.bash_aliases
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
 
-# Attach to tmux if session exists
-# otherwise start new sessions
-[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
