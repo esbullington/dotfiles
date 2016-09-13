@@ -47,6 +47,7 @@ set ruler
 set tabstop=2
 " size of an "indent"
 set shiftwidth=2
+set expandtab
 
 " Snippets
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -96,6 +97,7 @@ Plugin 'tpope/vim-abolish'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'frigoeu/psc-ide-vim'
+Plugin 'fsharp/vim-fsharp'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
