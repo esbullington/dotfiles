@@ -15,6 +15,10 @@ function clingit() {
   rlwrap $HOME/opt/cling/bin/cling "$@"
 }
 
+function condaenv() {
+  source opt/miniconda3/bin/activate "$@"
+}
+
 # Fetches files for a given commit
 function gitfiles() { 
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";

@@ -12,4 +12,4 @@ export NVM_DIR="/home/eric/.nvm"
 export PATH=$PATH:$HOME/opt/hash-slinger-2.7
 
 # added by Miniconda3 4.1.11 installer
-export PATH="/home/eric/opt/miniconda3/bin:$PATH"
+# export PATH="/home/eric/opt/miniconda3/bin:$PATH"
