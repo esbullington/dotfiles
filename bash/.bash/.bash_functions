@@ -7,6 +7,10 @@ function ssha() {
 	ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
 }
 
+function batik-rasterizer() {
+  java -jar $HOME/opt/batik-1.8/batik-rasterizer-1.8.jar "$@"
+}
+
 function clingit() {
   rlwrap $HOME/opt/cling/bin/cling "$@"
 }
