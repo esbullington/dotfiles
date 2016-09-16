@@ -6,6 +6,7 @@ alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/e
 alias eb='vim ~/.bashrc'
 alias ee='vim ~/.bash/.environment'
 alias ea='vim ~/.bash/.bash_aliases'
+alias es='vim ~/.bash/.secrets'
 alias ev='vim ~/.vimrc'
 alias et='vim ~/.tmux.conf'
 alias gl='git status'
