@@ -24,9 +24,14 @@ if [ -f ~/.bash/.bash_functions ]; then
     . ~/.bash/.bash_functions
 fi
 
-# API keys and other sensitive environmental variables
+# General path appends and other non-secret environmental vars
 if [ -f ~/.bash/.environment ]; then
     . ~/.bash/.environment
+fi
+
+# API keys and other sensitive environmental variables
+if [ -f ~/.bash/.secrets ]; then
+    . ~/.bash/.secrets
 fi
 
 # No annoying bells
