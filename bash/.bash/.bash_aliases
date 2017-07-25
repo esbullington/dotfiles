@@ -1,8 +1,8 @@
 shopt -s expand_aliases  
 # Aliases
+alias tmux='tmux -2'
 alias sb='source ~/.bashrc'
 alias st='tmux source-file ~/.tmux.conf'
-alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/eric/storage/opt/.bitcoin --datadir=/home/eric/oldhome/eric/.armory > /home/eric/logs/armory.log &'
 alias eb='vim ~/.bashrc'
 alias ee='vim ~/.bash/.environment'
 alias ea='vim ~/.bash/.bash_aliases'
