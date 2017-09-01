@@ -1,15 +1,44 @@
+# Git editor
+export GIT_EDITOR=vim
+
 # DOCKER
 export DOCKER_CONTENT_TRUST=1
 
+# Cling
+export PATH=$PATH:$HOME/opt/cling_2017-04-15_ubuntu16/bin
+
+# nim
+export PATH=$PATH:$HOME/opt/nim-0.17.0/bin
+
 #flow
 export PATH=$PATH:$HOME/opt/flow
+
+#flow
+export PATH=$PATH:$HOME/opt/q/l32
+export QHOME=$HOME/opt/q
+
+#scala
+# export PATH=$PATH:$HOME/opt/scala-2.12.2/bin
 
 # nvm
 export NVM_DIR="/home/eric/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
+# Hash slinger
 export PATH=$PATH:$HOME/opt/hash-slinger-2.7
+
+# Cabal
+export PATH=$PATH:$HOME/.cabal/bin/
 
 # added by Miniconda3 4.1.11 installer
 # export PATH="/home/eric/opt/miniconda3/bin:$PATH"
+
+# OCaml
+eval `opam config env`
+
+# Go
+export PATH=$PATH:$HOME/opt/go/bin
+export GOROOT=$HOME/opt/go
+
+# Swift
+export PATH=$PATH:$HOME/opt/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-06-02-a-ubuntu16.04/usr/bin

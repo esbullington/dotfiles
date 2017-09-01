@@ -6,11 +6,17 @@ filetype on
 filetype plugin on
 syntax on
 
+noremap <C-j> <C-x>
+noremap <C-i> <C-a>
+
 " Digraphs
 digraphs no 172
 digraphs xr 8853
 digraphs tr 8868
 digraphs fa 8869
+
+" Better commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Define map leader as comma
 let mapleader = "," 
@@ -33,7 +39,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
 " Make centered file header
-nnoremap <C-b> :center 40<cr>hhv0r*A<space><esc>20A*<esc>d40<bar>YppVr*kk.
+" nnoremap <C-b> :center 40<cr>hhv0r*A<space><esc>20A*<esc>d40<bar>YppVr*kk.
 
 " Set default register to be the same
 " as the system clipboard registrar
@@ -48,16 +54,6 @@ set tabstop=2
 " size of an "indent"
 set shiftwidth=2
 set expandtab
-
-" Snippets
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " Pathogen
 execute pathogen#infect()
@@ -90,14 +86,13 @@ Plugin 'autoclose'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'hashivim/vim-terraform'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'tpope/vim-abolish'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'frigoeu/psc-ide-vim'
-Plugin 'fsharp/vim-fsharp'
+Plugin 'reasonml-editor/vim-reason'"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

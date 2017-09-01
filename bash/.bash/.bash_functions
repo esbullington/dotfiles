@@ -3,47 +3,55 @@ showGPGRecipients() {
   gpg --status-fd 1 --list-only $1
 }
 
-function ssha() {
-	ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
+gi() { 
+    curl -L -s https://www.gitignore.io/api/"$@"
 }
 
-function batik-rasterizer() {
+weather() {
+    curl wttr.in/?2"${1:~Elgin,SC}"
+}
+
+ssha() {
+  ssh -i ~/.ssh/terraform root@$(ansible -m setup "$@" | sed -n 4p | tr -d ',"' | awk '{$1=$1;print}' | perl -pe 'chomp')
+}
+
+batik-rasterizer() {
   java -jar $HOME/opt/batik-1.8/batik-rasterizer-1.8.jar "$@"
 }
 
-function clingit() {
+clingit() {
   rlwrap $HOME/opt/cling/bin/cling "$@"
 }
 
-function condaenv() {
+condaenv() {
   source opt/miniconda3/bin/activate "$@"
 }
 
 # Fetches files for a given commit
-function gitfiles() { 
+gitfiles() { 
   /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
 }
 
-function smbcmd() {
+smbcmd() {
  smbclient //tomato/shared_files -A $HOME/.smb -c "$@"
 }
 
 # Attaches existing tmux sessions by id
-function attachit() {
+attachit() {
   tmux attach-session -d -t "$@";
 }
 
-function wpwww() {
+wpwww() {
   sudo -u www-data /usr/bin/php /home/eric/bin/wp "$@";
 }
 
 # Composer
-function composer() {
+composer() {
   php $HOME/.composer/composer.phar "$@";
 }
 
 # Fingerprints of ssh public keys
-function fingerprints() {
+fingerprints() {
   local file="$1"
   while read l; do
     [[ -n $l && ${l###} = $l ]] && ssh-keygen -l -f /dev/stdin <<<$l
@@ -67,7 +75,7 @@ mpng() {
     mv "$1"{.,}
 }
 grabtmux() {
-	tmux attach-session -d -t "$1"
+  tmux attach-session -d -t "$1"
 }
 mgif() {
     newsize=$(wc -c <"$1.")
