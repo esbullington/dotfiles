@@ -34,6 +34,21 @@ if [ -f ~/.bash/.secrets ]; then
     . ~/.bash/.secrets
 fi
 
+# COMPLETIONS
+# Hub for git
+HUBCOMPLETIONFILE=$HOME/scripts/hub.bash_completion
+if [ -f $HUBCOMPLETIONFILE ]; then
+  . $HUBCOMPLETIONFILE
+fi
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+#END COMPLETIONS
+
+
 # No annoying bells
 set bell-style none
 
@@ -140,9 +155,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash

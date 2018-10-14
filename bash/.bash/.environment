@@ -58,7 +58,7 @@ ADACORE=$OPT/adacore
 export PATH=$PATH:$ADACORE/gnat/bin:$ADACORE/gprbuild/bin:$ADACORE/spark2014/bin
 
 # Digital Ocean
-source <(/home/eric/bin/doctl completion bash)
+source <(/snap/bin/doctl completion bash)
 
 # added by Miniconda3 4.3.11 installer
 export PATH="/home/eric/miniconda3/bin:$PATH"
