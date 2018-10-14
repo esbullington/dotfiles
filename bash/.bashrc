@@ -58,6 +58,7 @@ export HISTCONTROL=ignorespace:ignoredups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -96,7 +97,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-export PROMPT_DIRTRIM=1
+export PROMPT_DIRTRIM=2
 
 if [ "$color_prompt" = yes ]; then
     # PS1='\e[94m\w λ\e[0m '
@@ -139,5 +140,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# added by Miniconda3 4.3.11 installer
-export PATH="/home/eric/miniconda3/bin:$PATH"
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /home/eric/.nvm/versions/node/v6.6.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash

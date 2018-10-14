@@ -4,7 +4,23 @@ showGPGRecipients() {
 }
 
 gi() { 
-    curl -L -s https://www.gitignore.io/api/"$@"
+  curl -L -s https://www.gitignore.io/api/"$@"
+}
+
+hashcompare() {
+  if [[ $1 == $2 ]]; then echo "Match!"; else echo "No Match!"; fi
+}
+
+nicepass() {
+  makepasswd --chars="${1:-16}" --string=$(python -c "import string,sys; sys.stdout.write(string.ascii_lowercase)")
+}
+
+cddir() { 
+  mkdir -p "$@" && cd "$@"
+}
+
+mem() {                                                                                                      
+  ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
 }
 
 weather() {
