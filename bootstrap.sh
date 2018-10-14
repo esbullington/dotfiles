@@ -3,7 +3,7 @@
 DOTFILES_DIR=$HOME/repos/dotfiles
 
 # System dependencies
-sudo apt-get install -y curl git vim-gtk tmux build-essential stow
+sudo apt-get install -y curl git vim tmux build-essential stow
 
 # Symlink all dotfiles to home directory
 cd $DOTFILES_DIR
@@ -11,6 +11,7 @@ stow bash --target=$HOME --dir=$DOTFILES_DIR
 stow git --target=$HOME --dir=$DOTFILES_DIR
 stow tmux --target=$HOME --dir=$DOTFILES_DIR
 stow vim --target=$HOME --dir=$DOTFILES_DIR
+stow readline --target=$HOME --dir=$DOTFILES_DIR
 
 # Create environment file to store local user envvars
 if [ ! -e $HOME/.bash/.environment ]; then
