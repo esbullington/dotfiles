@@ -33,13 +33,10 @@ set backspace=indent,eol,start
 " Insert single char after space in normal mode
 nnoremap <Space> i_<Esc>r
 
-" Use different backup copy dir 
-" so vim doesn't write multiple intermediate files to working dir
-set backup 
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
-set backupskip=/tmp/*,/private/tmp/* 
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp 
-set writebackup
+" No temp files
+set noundofile
+set noswapfile
+set nobackup 
 
 " Make centered file header
 " nnoremap <C-b> :center 40<cr>hhv0r*A<space><esc>20A*<esc>d40<bar>YppVr*kk.
