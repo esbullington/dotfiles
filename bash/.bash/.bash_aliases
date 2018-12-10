@@ -18,6 +18,7 @@ alias gl='git status'
 alias gvim='vim.gtk'
 alias gp='git push'
 alias git=hub
+alias lsrepos='curl "https://api.github.com/user/repos?per_page=100&access_token=$GITHUB_TOKEN" | jq ".[] | select(.fork == false) | .html_url"'
 alias scalabootstrap='sbt new sbt/scala-seed.g8'
 alias blogdate='date +"%Y-%m-%d"'
 alias grabit='tmux attach-session -d'
