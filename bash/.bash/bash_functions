@@ -1,0 +1,58 @@
+# Custom functions
+
+# HTTP APIs
+gi() { 
+  curl -L -s https://www.gitignore.io/api/"$@"
+}
+
+weather() {
+    curl wttr.in/?2"${1:~Elgin,SC}"
+}
+
+# GPG/Hash
+showGPGRecipients() {
+  gpg --status-fd 1 --list-only $1
+}
+hashcompare() {
+  if [[ $1 == $2 ]]; then echo "Match!"; else echo "No Match!"; fi
+}
+
+nicepass() {
+  makepasswd --chars="${1:-16}" --string=$(python3 -c "import string,sys; sys.stdout.write(string.ascii_lowercase)")
+}
+
+# Utils
+cddir() { 
+  mkdir -p "$@" && cd "$@"
+}
+
+mem() {                                                                                                      
+  ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+}
+
+batik-rasterizer() {
+  java -jar $HOME/opt/batik-1.8/batik-rasterizer-1.8.jar "$@"
+}
+
+clingit() {
+  rlwrap $HOME/opt/cling/bin/cling "$@"
+}
+
+# Image optimization tools
+# Via Rob W at:
+# http://stackoverflow.com/a/19327447
+png() {
+    pngcrush -brute "$1"{,.} && du -b "$1"{,.}
+}
+gif() {
+    gifsicle -O "$1" -o "$1." && du -b "$1"{,.}
+}
+jpeg() {
+    jpegtran "$1" > "$1." && du -b "$1"{,.}
+}
+
+# git
+# Fetches files for a given commit
+gitfiles() { 
+  /usr/bin/git diff-tree --no-commit-id --name-only -r "$@";
+}
