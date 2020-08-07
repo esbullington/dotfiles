@@ -1,81 +1,57 @@
 " INSTALLATION:
-" mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 filetype on
 filetype plugin on
 syntax on
+" incremental search
+set incsearch
 
-" Set per project .vimrc
-set exrc
-
-noremap <C-j> <C-x>
-noremap <C-i> <C-a>
-
-" Better commit messages
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" Define map leader as comma
-let mapleader = "," 
+" backup copy
+set backupcopy=yes
 
 " Allow us to use bash aliases in command line
 let $BASH_ENV = "~/.bash_aliases"
 
-" Insert single char after space in normal mode
-nnoremap <Space> i_<Esc>r
+" Enable solarized theme
+let g:airline_theme='solarized'
 
 " No temp files
 set noundofile
 set noswapfile
-set nobackup 
+set nobackup
 
-" Always ruler showing
-set ruler
+" search settings
+set incsearch
+" set hlsearch
+nnoremap <CR> :noh<CR><CR>
 
-" GLOBAL FORMATTING
-" size of a hard tabstop
-set tabstop=2
-" size of an "indent"
-set shiftwidth=2
+" Proper default spacing
+filetype plugin indent on
+" On pressing tab, insert 2 spaces
 set expandtab
+" show existing tab with 2 spaces width
+set tabstop=2
+set softtabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
 
-" Pathogen
-execute pathogen#infect()
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tComment'
-Plugin 'autoclose'
-Plugin 'surround.vim'
-Plugin 'repeat.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'tpope/vim-abolish'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+set nocompatible
 
 
-" Ensure per project .vimrc is secure
-set secure
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin()
+
+" Make sure you use single quotes
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+" Plug 'reasonml-editor/vim-reason-plus'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+
+" Initialize plugin system
+call plug#end()
