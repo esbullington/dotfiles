@@ -1,3 +1,9 @@
+# # If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # the most important thing!
 set -o vi
 
@@ -35,6 +41,11 @@ fi
 # API keys and other sensitive environmental variables
 if [ -f ~/.bash/bash_secrets ]; then
     . ~/.bash/bash_secrets
+fi
+
+# Local env to not be checked in
+if [ -f ~/.bash/bash_local ]; then
+    . ~/.bash/bash_local
 fi
 
 # "Herodotus was the father of history, you know"

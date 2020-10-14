@@ -1,5 +1,3 @@
-OPT=$HOME/opt
-
 # Various path additions
 PATH=$PATH:$HOME/bin
 export PATH
@@ -8,34 +6,7 @@ export PATH
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export EDITOR=vi
+export EDITOR=vim
 
 # Git editor
 export GIT_EDITOR=vim
-
-# rpi tools
-export PATH=$PATH:~/tools/arm-bcm2708/arm-linux-gnueabihf/bin
-
-# yarn
-export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
-
-# hashcat
-export PATH=$PATH:$HOME/opt/flow
-
-# homebrew
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-
-#flow
-export PATH=$PATH:$HOME/opt/q/l32
-export QHOME=$HOME/opt/q
-
-# Hash slinger
-export PATH=$PATH:$HOME/opt/hash-slinger-2.7
-
-# Cabal
-export PATH=$PATH:$HOME/.cabal/bin/
-
-# OCaml
-eval `opam config env`
-
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
