@@ -28,13 +28,13 @@ if [ -f ~/.bash/bash_functions ]; then
 fi
 
 # General path appends and other non-secret environmental vars
-if [ -f ~/.bash/environment ]; then
-    . ~/.bash/environment
+if [ -f ~/.bash/bash_environment ]; then
+    . ~/.bash/bash_environment
 fi
 
 # API keys and other sensitive environmental variables
-if [ -f ~/.bash/secrets ]; then
-    . ~/.bash/secrets
+if [ -f ~/.bash/bash_secrets ]; then
+    . ~/.bash/bash_secrets
 fi
 
 # "Herodotus was the father of history, you know"
