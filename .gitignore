@@ -3,6 +3,8 @@ vim/.vim/bundle
 vim/.vim/autoload
 vim/.vim/.netrwhist
 *secrets
+bash_local
+bashrc
 *.o
 *.hi
 *.errors
