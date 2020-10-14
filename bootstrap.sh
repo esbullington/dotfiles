@@ -3,7 +3,7 @@
 DOTFILES_DIR=$HOME/repos/dotfiles
 
 # System dependencies
-sudo apt-get install -y curl git vim tmux build-essential stow
+sudo apt-get install -y curl git vim tmux build-essential stow pass scdaemon
 
 # Symlink all dotfiles to home directory
 cd $DOTFILES_DIR
