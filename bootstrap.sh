@@ -19,5 +19,6 @@ if [ ! -e $HOME/.bash/.environment ]; then
 fi
 
 # Install vim tools
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
