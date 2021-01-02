@@ -1,16 +1,20 @@
 shopt -s expand_aliases  
 # Aliases
-alias sudopy='sudo PYTHONPATH=$PYTHONPATH'
-alias sb='source ~/.bashrc'
 alias st='tmux source-file ~/.tmux.conf'
-alias armory='nohup python /usr/lib/armory/ArmoryQt.py --satoshi-datadir=/home/eric/storage/opt/.bitcoin --datadir=/home/eric/oldhome/eric/.armory > /home/eric/logs/armory.log &'
-alias rusti='rlwrap rustup run nightly-2016-08-01 ~/.cargo/bin/rusti'
 alias sqlite='/usr/local/bin/sqlite3'
-alias eb='vim ~/.bashrc'
-alias ee='vim ~/.bash/environment'
+
+# bash
+alias sb='source ~/.bashrc'
+alias eb='vim ~/.bash/bash_main'
+alias ee='vim ~/.bash/bash_environment'
 alias ea='vim ~/.bash/bash_aliases'
-alias es='vim ~/.bash/secrets'
+alias es='vim ~/.bash/bash_secrets'
 alias ef='vim ~/.bash/bash_functions'
+alias se='source ~/.bash/bash_environment'
+alias sa='source ~/.bash/bash_aliases'
+alias ss='source ~/.bash/bash_secrets'
+alias sf='source ~/.bash/bash_functions'
+
 alias ev='vim ~/.vimrc'
 alias ek='vim ~/.config/kak/kakrc'
 alias et='vim ~/.tmux.conf'
@@ -18,7 +22,6 @@ alias gl='git status'
 alias gvim='vim.gtk'
 alias gp='git push'
 alias git=hub
-alias lsrepos='curl "https://api.github.com/user/repos?per_page=100&access_token=$GITHUB_TOKEN" | jq ".[] | select(.fork == false) | .html_url"'
 alias scalabootstrap='sbt new sbt/scala-seed.g8'
 alias blogdate='date +"%Y-%m-%d"'
 alias grabit='tmux attach-session -d'

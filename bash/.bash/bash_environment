@@ -1,0 +1,25 @@
+# Various path additions
+PATH=$PATH:$HOME/bin
+export PATH
+
+# For some odd reason, system locale not set for local user
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export EDITOR=vim
+
+# Git editor
+export GIT_EDITOR=vim
+
+# flow
+export PATH=$PATH:$HOME/opt/flow
+
+#q
+export PATH=$PATH:$HOME/opt/q/l32
+export QHOME=$HOME/opt/q
+
+# Hash slinger
+export PATH=$PATH:$HOME/opt/hash-slinger-2.7
+
+#nim
+export PATH=$PATH:$HOME/opt/nim/bin
