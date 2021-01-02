@@ -34,3 +34,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# opam configuration
+test -r /home/eric/.opam/opam-init/init.sh && . /home/eric/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

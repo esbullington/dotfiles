@@ -34,10 +34,6 @@ batik-rasterizer() {
   java -jar $HOME/opt/batik-1.8/batik-rasterizer-1.8.jar "$@"
 }
 
-clingit() {
-  rlwrap $HOME/opt/cling/bin/cling "$@"
-}
-
 # Image optimization tools
 # Via Rob W at:
 # http://stackoverflow.com/a/19327447

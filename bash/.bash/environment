@@ -4,6 +4,9 @@ OPT=$HOME/opt
 PATH=$PATH:$HOME/bin
 export PATH
 
+# bitcoin
+export PATH=$PATH:/opt/bitcoin/bin
+
 # For some odd reason, system locale not set for local user
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -19,23 +22,21 @@ export PATH=$PATH:~/tools/arm-bcm2708/arm-linux-gnueabihf/bin
 # yarn
 export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
 
-# hashcat
+# flow
 export PATH=$PATH:$HOME/opt/flow
 
 # homebrew
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-#flow
+#q
 export PATH=$PATH:$HOME/opt/q/l32
 export QHOME=$HOME/opt/q
 
 # Hash slinger
 export PATH=$PATH:$HOME/opt/hash-slinger-2.7
 
-# Cabal
-export PATH=$PATH:$HOME/.cabal/bin/
-
-# OCaml
-eval `opam config env`
-
+# java
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+#nim
+export PATH=$PATH:$HOME/opt/nim/bin
