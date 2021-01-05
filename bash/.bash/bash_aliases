@@ -30,7 +30,6 @@ alias jserve='bundle exec jekyll serve'
 alias makehash='cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 16 | head -n 1'
 alias showrecipients=showGPGRecipients
 alias clearhistory='history -c && history -w'
-alias mitscheme='rlwrap -r -c $HOME/opt/mit-scheme/src/microcode/scheme  --band $HOME/opt/mit-scheme/src/lib/runtime.com'
 alias javarepl='java -jar $HOME/bin/javarepl-428.jar'
 alias qrepl='rlwrap q'
 # `clipcopy' copies and `clippaste' pastes'

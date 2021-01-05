@@ -9,3 +9,5 @@ bashrc
 *.hi
 *.errors
 plugged
+tmp
+temp

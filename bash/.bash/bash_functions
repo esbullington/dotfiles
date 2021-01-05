@@ -6,7 +6,17 @@ gi() {
 }
 
 weather() {
-    curl wttr.in/?2"${1:~Elgin,SC}"
+  curl wttr.in/?2"${1:~Elgin,SC}"
+}
+
+mitscheme() {
+  rlwrap -r -c -f "$HOME/opt/mit-scheme/mit_scheme_bindings.txt" "$HOME/opt/mit-scheme/src/microcode/scheme" --band "$HOME/opt/mit-scheme/src/lib/runtime.com" "$@"
+}
+
+runscheme() {
+  echo;
+  "$HOME/opt/mit-scheme/src/microcode/scheme"  --band "$HOME/opt/mit-scheme/src/lib/runtime.com"  --quiet < "$1";
+  echo
 }
 
 # GPG/Hash

@@ -1,42 +1,51 @@
-" INSTALLATION:
 
 filetype on
 filetype plugin on
 syntax on
+
 " incremental search
 set incsearch
-
-" backup copy
-set backupcopy=yes
 
 " Allow us to use bash aliases in command line
 let $BASH_ENV = "~/.bash_aliases"
 
-" Enable solarized theme
-let g:airline_theme='solarized'
+execute pathogen#infect()
 
-" No temp files
-set noundofile
-set noswapfile
-set nobackup
+" temp/undo files
+set undofile
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
 
-" search settings
-set incsearch
-" set hlsearch
-nnoremap <CR> :noh<CR><CR>
+set backup                        " enable backups
+set swapfile                      " enable swaps
+set undodir=$HOME/.vim/tmp/undo     " undo files
+set backupdir=$HOME/.vim/tmp/backup " backups
+set directory=$HOME/.vim/tmp/swap   " swap files
 
-" Proper default spacing
-filetype plugin indent on
-" On pressing tab, insert 2 spaces
-set expandtab
-" show existing tab with 2 spaces width
-set tabstop=2
-set softtabstop=2
-" when indenting with '>', use 2 spaces width
-set shiftwidth=2
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+set tabstop=2     " Size of a hard tabstop (ts).
+set shiftwidth=2  " Size of an indentation (sw).
+set expandtab     " Always uses spaces instead of tab characters (et).
+set softtabstop=0 " Number of spaces a <Tab> counts for. When 0, featuer is off (sts).
+set autoindent    " Copy indent from current line when starting a new line.
+set smarttab      " Inserts blanks on a <Tab> key (as per sw, ts and sts).
+
+set laststatus=2
+set ruler
 
 set nocompatible
 
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -45,13 +54,9 @@ call plug#begin()
 
 " Make sure you use single quotes
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'reasonml-editor/vim-reason-plus'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'reasonml-editor/vim-reason-plus'
 
 " Initialize plugin system
 call plug#end()
