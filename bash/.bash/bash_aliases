@@ -5,7 +5,8 @@ alias sqlite='/usr/local/bin/sqlite3'
 
 # bash
 alias sb='source ~/.bashrc'
-alias eb='vim ~/.bash/bash_main'
+alias eb='vim ~/.bashrc'
+alias em='vim ~/.bash/bash_main'
 alias ee='vim ~/.bash/bash_environment'
 alias ea='vim ~/.bash/bash_aliases'
 alias es='vim ~/.bash/bash_secrets'
