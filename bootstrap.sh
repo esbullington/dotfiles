@@ -8,7 +8,7 @@ BASH_COMPLETION_DIR=$HOME/.local/share/bash-completion
 
 # System dependencies
 echo "Install system dependencies"
-sudo apt-get install -y curl git vim tmux build-essential stow pass scdaemon hub wget rsync
+sudo apt-get install -y curl git vim tmux build-essential stow pass scdaemon hub wget rsync makepasswd
 
 # Symlink all dotfiles to home directory
 echo "Symlinking repo dotfiles to home directory"
